@@ -1,24 +1,35 @@
-import logo from './logo.svg';
 import './App.css';
+import {BrowserRouter,Switch,Route,Redirect} from 'react-router-dom';
+import {Row,Col} from 'react-bootstrap';
+import Login from './Login';
+import Content from './Content';
+import img from './images/image2.png';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Row className="topbar">
+          <center>
+            <h4><b>AVISHKAR</b></h4>
+          </center>
+        </Row>
+        <Row>
+          <Col className="left d-none d-lg-block">
+            <center>
+              <img alt="rocket" src={img} className="image img-fluid"/>
+            </center>
+          </Col>
+          <Col className="right">
+          <Switch>
+          <Route exact path='/' component={()=><Login/>}/>
+          <Route exact path='/content' component={()=><Content/>}/>
+          <Redirect to='/'/>
+        </Switch>
+          </Col>
+        </Row>
+      </div>
+    </BrowserRouter>
   );
 }
 
